@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import fetchProducts from "../utils/fetchProducts.js";
 
 function ProductList() {
+    
 
     const [products, setProducts] = useState([]);
 
@@ -18,7 +19,7 @@ function ProductList() {
     return (
         <div className='container'>
             {products.map(product => {
-                return <ProductCard product={product}/>
+                return <ProductCard key={product.id} product={product}/>
             })}
             <pre>{JSON.stringify(products)}</pre>
         </div>
