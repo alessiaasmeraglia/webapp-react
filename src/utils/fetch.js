@@ -28,9 +28,10 @@ export async function fetchProductById(id) {
         }
 
         const data = await response.json();
-        console.log("Prodotto:", data);
 
-        return data.data;
+        console.log("Prodotto singolo:", data);
+
+        return data.results;
     } catch (error) {
         console.error("Errore:", error);
         return null;

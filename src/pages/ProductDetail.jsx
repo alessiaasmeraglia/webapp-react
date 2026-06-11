@@ -58,7 +58,7 @@ function ProductDetail() {
                     <div className="col-12 col-lg-6">
                         <div className="product-detail-image">
                             {product.image ? (
-                                <img src={product.image} alt={product.name} />
+                                <img src={`/img/${product.image}`} alt={product.name} />
                             ) : (
                                 <span>🥔</span>
                             )}
@@ -67,7 +67,8 @@ function ProductDetail() {
 
                     <div className="col-12 col-lg-6">
                         <span className="product-detail-category">
-                            {product.category || "Patatosa"}
+                            {product.categories?.map((category) => category.name).join(", ") ||
+                                "Patatosa"}
                         </span>
 
                         <h1 className="product-detail-title">{product.name}</h1>
