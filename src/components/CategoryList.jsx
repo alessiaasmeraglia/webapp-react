@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard.jsx";
+import { fetchProductById } from "../utils/fetch.js";
+
 
 
 function productBelongsToCategory(product, category) {
@@ -14,37 +17,70 @@ function productBelongsToCategory(product, category) {
     return productCategories.includes(category.toLowerCase());
 }
 
-function CategoryList({ categories, products, choice }) {
+function CategoryList({ categories, products }) {
+    const [ratingsByProductId, setRatingsByProductId] = useState({});
 
-    
-    const currentCategory = categories.find((category) => category.name.toLowerCase() === choice.toLowerCase());
+    useEffect(() => {
+        async function getProductsRatings() {
+            const ratingsData = await Promise.all(
+                products.map(async (product) => {
+                    const productDetail = await fetchProductById(product.id);
 
+                    return {
+                        productId: product.id,
+                        averageRating: productDetail?.average_rating ?? null,
 
-    if (!currentCategory) {
-        return (
-            <div className="text-center p-5">
-                <p>Seleziona una categoria per visualizzare le nostre patate deliziose!</p>
-            </div>
-        );
-    }
+                    };
+                })
+            );
 
-    const categoryProducts = products.filter((product) =>
-        productBelongsToCategory(product, currentCategory.name)
-    );
+            const ratingsObject = {};
+
+            ratingsData.forEach((item) => {
+                ratingsObject[item.productId] = {
+                    averageRating: item.averageRating,
+
+                };
+            });
+
+            setRatingsByProductId(ratingsObject);
+        }
+
+        if (products.length > 0) {
+            getProductsRatings();
+        }
+    }, [products]);
 
     return (
         <div className="category-sections-wrapper">
-            <section className="category-products-section" key={currentCategory.id}>
-                <div className="category-products-heading">
-                    <h2 className="titles-font">{currentCategory.name}</h2>
-                    <p>{currentCategory.description}</p>
-                </div>
+            {categories.map((category) => {
+                const categoryProducts = products.filter((product) =>
+                    productBelongsToCategory(product, category)
+                );
 
-                {categoryProducts.length > 0 ? (
-                    <div className="row g-4">
-                        {categoryProducts.map((product) => (
-                            <div className="col-12 col-sm-6 col-lg-3" key={product.id}>
-                                <ProductCard product={product} />
+                return (
+                    <section className="category-products-section" key={category.id}>
+                        <div className="category-products-heading">
+                            <h2>{category.name}</h2>
+                            <p>{category.description}</p>
+                        </div>
+
+                        {categoryProducts.length > 0 ? (
+                            <div className="row g-4">
+                                {categoryProducts.map((product) => (
+                                    <ProductCard
+                                        product={product}
+                                        averageRating={ratingsByProductId[product.id]?.averageRating}
+                                        totalReviews={ratingsByProductId[product.id]?.totalReviews}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="empty-category-message">
+                                <p>
+                                    Nessun prodotto trovato per questa categoria. La dinastia è
+                                    ancora in fase di frittura.
+                                </p>
                             </div>
                         ))}
                     </div>
