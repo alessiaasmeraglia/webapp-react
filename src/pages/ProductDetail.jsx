@@ -101,7 +101,7 @@ function ProductDetail() {
                                 </span>
                             )}
                         </div>
-                        <div>
+                        <div className="mt-3">
                             <div className="stat-item">
                                 <span className="label">Valutazione media:</span>
                                 <span className="value"> {product.average_rating} / 5 ⭐</span>
