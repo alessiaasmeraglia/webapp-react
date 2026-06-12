@@ -23,7 +23,7 @@ function ProductCard({ product }) {
 
             <div className="card-body d-flex flex-column">
                 <span className="badge text-bg-warning align-self-start mb-3 rounded-pill">
-                    {product.category || "Patatosa"}
+                    {product.categories || "Patatosa"}
                 </span>
 
                 <h3 className="card-title h5 fw-bold">
