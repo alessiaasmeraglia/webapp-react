@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ProductList from "../components/ProductList.jsx";
+import SearchBar from "../components/SearchBar.jsx"; 
 
 function Products() {
 
@@ -15,9 +16,12 @@ function Products() {
           </p>
         </div>
 
+        <SearchBar />
+        
         <ProductList/>
 
-        
+
+
       </div>
     </section>
   );
