@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
 
 function ProductCard({ product }) {
+    const categoryLabel = Array.isArray(product.categories)
+        ? product.categories.map((category) => category.name).join(", ")
+        : product.categories || product.category || "Patatosa";
+
+    const imageSrc = product.image?.startsWith("http")
+        ? product.image
+        : `/img/${product.image}`;
+
     return (
         <article className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden product-card">
             <div className="position-relative bg-warning-subtle">
-                <img
-                    src={product.image}
-                    alt={product.name}
-                    className="card-img-top product-card-img"
-                />
+                {product.image ? (
+                    <img
+                        src={imageSrc}
+                        alt={product.name}
+                        className="card-img-top product-card-img"
+                    />
+                ) : (
+                    <div className="product-card-placeholder">
+                        🥔
+                    </div>
+                )}
 
                 {product.available ? (
                     <span className="badge text-bg-success position-absolute top-0 end-0 m-3 rounded-pill">
@@ -23,7 +37,7 @@ function ProductCard({ product }) {
 
             <div className="card-body d-flex flex-column">
                 <span className="badge text-bg-warning align-self-start mb-3 rounded-pill">
-                    {product.categories || "Patatosa"}
+                    {categoryLabel}
                 </span>
 
                 <h3 className="card-title h5 fw-bold">

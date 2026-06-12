@@ -1,20 +1,30 @@
 import { Link } from "react-router-dom";
-import style from './CategoryCard.module.css';
 
 function CategoryCard({ category }) {
     return (
-        <Link to={`/category/${category.id}`} className='text-decoration-none'>
-            <div className={`h-100 p-4 shadow border border-2 border-black rounded-4 ${style.card}`}>
-                {/* 
-                <div>
-                    <img src={URL icona front-end} alt={category.name}/>
-                </div> 
-                */}
-                <div className='mt-4'>
-                    <h3 className='fw-bold mb-2 text-black'>{category.name}</h3>
-                    <p className=' text-secondary'>{category.description}</p>
+        <Link
+            to={`/categories/${category.id}`}
+            className="text-decoration-none text-reset"
+        >
+            <article className="card h-100 rounded-4 border-0 shadow-sm category-card-cartoon">
+                <div className="card-body p-4 d-flex flex-column">
+                    <div className="category-card-icon mb-4">
+                        🥔
+                    </div>
+
+                    <h3 className="card-title fw-bold">
+                        {category.name}
+                    </h3>
+
+                    <p className="card-text flex-grow-1">
+                        {category.description}
+                    </p>
+
+                    <span className="btn btn-category-card align-self-start">
+                        Esplora
+                    </span>
                 </div>
-            </div>
+            </article>
         </Link>
     );
 }
