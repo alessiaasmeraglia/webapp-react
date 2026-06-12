@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ProductList from "../components/ProductList.jsx";
+import SearchBar from "../components/SearchBar.jsx"; 
 
 function Products() {
   const categories = [
@@ -24,7 +25,7 @@ function Products() {
             nostre migliori creazioni.
           </p>
         </div>
-
+        <SearchBar />
         <div className="d-flex justify-content-center flex-wrap gap-3 mb-5">
           {categories.map((category) => (
             <button
@@ -44,7 +45,7 @@ function Products() {
 
         <ProductList activeCategory={activeCategory} />
 
-        
+
       </div>
     </section>
   );
