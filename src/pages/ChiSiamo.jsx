@@ -36,7 +36,7 @@ function ChiSiamo() {
                         <div className="col-12 col-lg-5 text-center">
                             <div className="about-mascot-card">
                                 <img
-                                    src="/img/pata-boss.png"
+                                    src="/img/logo_sito_senza_scritta_ingrandito.png"
                                     alt="Il pata capo"
                                     className="about-mascot-img"
                                 />
@@ -111,10 +111,7 @@ function ChiSiamo() {
                     <div className="row align-items-center g-5">
                         <div className="col-12 col-lg-5">
                             <div className="about-story-image">
-                                <img
-                                    src="/img/pata-team.jpg"
-                                    alt="La squadra patatosa"
-                                />
+                                <span className="brand-icon">🍟</span>
                             </div>
                         </div>
 

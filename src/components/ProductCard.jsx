@@ -20,12 +20,12 @@ function ProductCard({ product }) {
 
     return (
         <article className="card h-100 border-0 shadow-sm rounded-4 overflow-hidden product-card">
-            <div className="position-relative bg-warning-subtle">
+            <div className="position-relative bg-warning-subtle p-3 pt-4">
                 {product.image ? (
                     <img
                         src={imageSrc}
                         alt={product.name}
-                        className="card-img-top product-card-img"
+                        className="card-img-top product-card-img w-100"
                     />
                 ) : (
                     <div className="product-card-placeholder">
@@ -45,7 +45,7 @@ function ProductCard({ product }) {
             </div>
 
             <div className="card-body d-flex flex-column">
-                <span className="badge text-bg-warning align-self-start mb-3 rounded-pill">
+                <span className="badge text-bg-warning align-self-start mb-3 rounded-pill text-wrap">
                     {categoryLabel}
                 </span>
 
