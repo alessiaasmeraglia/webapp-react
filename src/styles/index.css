@@ -2271,8 +2271,9 @@
 }
 
 .home-mascot-img {
-  width: min(100%, 390px);
-  height: 390px;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
   object-fit: contain;
 }
 
